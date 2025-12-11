@@ -1,31 +1,41 @@
-initial_location = 50
-#With opens the file in read mode and ensures it is properly closed after its suite finishes
-with open("day1/sampledata.txt", "r") as data:
-    
-    # Iterate through each line in the file
-    for line in data:
-        
-        # Remove any leading/trailing whitespace (like the newline character) for clean checking
-        # line = line.strip("RL")
-        # print(f"Processing command: {line}")
-        # Check for 'L' (Left Turn)
+currentlocation = 50
+
+counter = 0
+
+def left_turn(currentlocation, turn_value):
+    new_location = currentlocation - turn_value
+    if new_location < 0:
+        new_location = 100 + new_location
+    print(f"Adjusted location after Left turn: {new_location}")
+    return new_location
+
+def right_turn(currentlocation, turn_value):
+    new_location = currentlocation + turn_value
+    if new_location > 99:
+        new_location = new_location - 100
+    print(f"Adjusted location after Right turn: {new_location}")
+    return new_location
+
+with open("day1/sampledata.txt", "r") as file:
+
+    for line in file:
+        # Check for 'L' (Left Turn) 
         if "L" in line:
-            print(f"**Left turn detected** for command: {line}")
-            leftStrip = line.strip("L")
-            print(f"After stripping 'L': {leftStrip}")
-            print(type(leftStrip))
-            current_location = initial_location - int(leftStrip)
-            print(f"New location after left turn: {current_location}")
-            if current_location < 0:
-                current_location = 100 + current_location
-                print(f"Location on dial: {current_location}")
+            # print(f"**Left turn detected** for command: {line}")
+            leftvalue = int(line.strip("L"))
+            print(f"Turn value after stripping 'L': {leftvalue}")
+            currentlocation = left_turn(currentlocation, leftvalue)
+            if currentlocation == 0:
+                counter += 1
+                print(f"Counter incremented to: {counter}")
         # Check for 'R' (Right Turn)
         elif "R" in line:
-      
-            print(f"**Right turn detected** for command: {line}")
-
-        else:
-           print(f"Unknown command: {line}")
+            # print(f"**Right turn detected** for command: {line}")
+            rightvalue = int(line.strip("R"))
+            print(f"Turn value after stripping 'R': {rightvalue}")
+            currentlocation = right_turn(currentlocation, rightvalue)
+    
+        
 
 # print(data)
 
