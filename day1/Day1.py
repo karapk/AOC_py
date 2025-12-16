@@ -17,7 +17,7 @@ def right_turn(currentlocation, turn_value):
     print(f"Adjusted location after Right turn: {new_location}")
     return new_location
 
-with open("day1/data.txt", "r") as file:
+with open("day1/sampledata.txt", "r") as file:
 
     for line in file:
         # Check for 'L' (Left Turn) 
@@ -38,24 +38,5 @@ with open("day1/data.txt", "r") as file:
             if currentlocation == 0:
                 counter += 1
                 print(f"Counter incremented to: {counter}")
-    
+print(f"Final counter value: {counter}")
         
-
-# print(data)
-
-# lines =data.split("\n")
-# print("Lines:", lines)
-
-# def L_turn(data):
-#     lines = data.split("\n")
-#     result = []
-#     for line in lines:
-#         if line:
-#             direction, value = line[0], int(line[1:])
-#             if direction == 'L':
-#                 result.append(('Left', value))
-#             elif direction == 'R':
-#                 result.append(('Right', value))
-#     return result
-
-# print(L_turn(data))
